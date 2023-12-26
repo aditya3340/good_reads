@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import Collection from "../components/Collection";
 import NavBar from "../components/NavBar";
 import Search from "../components/Search";
@@ -7,11 +7,13 @@ import { useBookStore } from "../store/useBookStore";
 function Home() {
   const books = useBookStore((state) => state.books);
 
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState("");
 
   const handleSearchChange = (searchValue) => {
     setSearchString(searchValue);
-  }
+  };
+
+  console.log(books);
 
   return (
     <div className=" p-4 md:w-[80%] md:m-auto">
@@ -22,11 +24,11 @@ function Home() {
           haven."
         </h1>
       </div>
-      <Search  onSearchChange={handleSearchChange}/>
+      <Search onSearchChange={handleSearchChange} />
 
       <div>All collections will display here</div>
 
-      <Collection books={books} searchString = {searchString} />
+      <Collection books={books} searchString={searchString} />
     </div>
   );
 }

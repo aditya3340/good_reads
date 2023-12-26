@@ -6,7 +6,7 @@ const Collection = ({ books, searchString }) => {
 
   useEffect(() => {
     handleSearch(searchString);
-  }, );
+  },[books,searchString] );
 
   const handleSearch = (searchString) => {
     if (!searchString) {

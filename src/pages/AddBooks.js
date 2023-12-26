@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useBookStore } from "../store/useBookStore";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import {FiPlus} from 'react-icons/fi'
+import { FiPlus } from "react-icons/fi";
 
 const AddBooks = () => {
   const addBook = useBookStore((state) => state.addBook);
@@ -33,14 +33,12 @@ const AddBooks = () => {
     setFormData({ ...formData, [e.target.name]: value });
   };
 
+  // const book = { ...formData, selectedImage };
+
   const handleAddBook = () => {
-    addBook(
-      formData.title,
-      formData.s_number,
-      formData.description,
-      selectedImage
-    );
+    addBook(formData.title,formData.s_number,formData.description, selectedImage);
     setSelectedImage(null);
+    // console.log(book);
     alert("book added");
   };
 
@@ -51,85 +49,85 @@ const AddBooks = () => {
 
       <div className="lg:w-[40%]">
         <form>
-        <div className="py-2 flex items-center">
-          <h1 htmlFor="title" className="font-semibold text-lg mr-2">
-            Title:
-          </h1>
-          <input
-            id="title"
-            name="title"
-            className="w-full appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Title"
-            onChange={handleChange}
-            value={formData.title}
-            required
-          />
-        </div>
-        <div className="py-2 flex items-center">
-          <h1 htmlFor="s_number" className="font-semibold text-lg mr-2">
-            Serial Number:
-          </h1>
-          <input
-            id="s_number"
-            name="s_number"
-            className="w-full appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="serial Number"
-            onChange={handleChange}
-            value={formData.s_number}
-            required
-          />
-        </div>
-        <div className="py-2 flex items-center">
-          <h1 htmlFor="description" className="font-semibold text-lg mr-2">
-            Description:
-          </h1>
-          <input
-            id="description"
-            name="description"
-            className="w-full appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Description"
-            onChange={handleChange}
-            value={formData.description}
-            required
-          />
-        </div>
-        <div className="pb-2 ">
-          <div className="flex items-center">
-            <h1 htmlFor="image" className="font-semibold text-lg mr-2">
-              Add image:
+          <div className="py-2 flex items-center">
+            <h1 htmlFor="title" className="font-semibold text-lg mr-2">
+              Title:
             </h1>
-
-            {/* Choosen file */}
-
-            <span className="relative bg-white border border-gray-300 rounded-md px-4 py-2 inline-block">
-              <span className="text-blue-500">Upload File</span>
-              <input
-                type="file"
-                id="fileInput"
-                className="absolute inset-0 opacity-0 cursor-pointer"
-                accept="image/*"
-                onChange={handleImageChange}
-                required
-              />
-            </span>
-          </div>
-          {selectedImage && (
-            <img
-              src={selectedImage}
-              alt="Selected"
-              className="max-w-[80%] max-h-[250px] rounded-xl my-2"
+            <input
+              id="title"
+              name="title"
+              className="w-full appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Title"
+              onChange={handleChange}
+              value={formData.title}
+              required
             />
-          )}
-        </div>
-        <Link to={"/admin"}>
-          <button
-            onClick={handleAddBook}
-            className="flex items-center bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white font-semibold py-2 px-8 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            Add
-            <FiPlus className="ml-1"/>
-          </button>
-        </Link>
+          </div>
+          <div className="py-2 flex items-center">
+            <h1 htmlFor="s_number" className="font-semibold text-lg mr-2">
+              Serial Number:
+            </h1>
+            <input
+              id="s_number"
+              name="s_number"
+              className="w-full appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="serial Number"
+              onChange={handleChange}
+              value={formData.s_number}
+              required
+            />
+          </div>
+          <div className="py-2 flex items-center">
+            <h1 htmlFor="description" className="font-semibold text-lg mr-2">
+              Description:
+            </h1>
+            <input
+              id="description"
+              name="description"
+              className="w-full appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Description"
+              onChange={handleChange}
+              value={formData.description}
+              required
+            />
+          </div>
+          <div className="pb-2 ">
+            <div className="flex items-center">
+              <h1 htmlFor="image" className="font-semibold text-lg mr-2">
+                Add image:
+              </h1>
+
+              {/* Choosen file */}
+
+              <span className="relative bg-white border border-gray-300 rounded-md px-4 py-2 inline-block">
+                <span className="text-blue-500">Upload File</span>
+                <input
+                  type="file"
+                  id="fileInput"
+                  className="absolute inset-0 opacity-0 cursor-pointer"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  required
+                />
+              </span>
+            </div>
+            {selectedImage && (
+              <img
+                src={selectedImage}
+                alt="Selected"
+                className="max-w-[80%] max-h-[250px] rounded-xl my-2"
+              />
+            )}
+          </div>
+          <Link to={"/admin"}>
+            <button
+              onClick={handleAddBook}
+              className="flex items-center bg-gradient-to-r from-green-400 to-green-500 hover:from-green-500 hover:to-green-600 text-white font-semibold py-2 px-8 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            >
+              Add
+              <FiPlus className="ml-1" />
+            </button>
+          </Link>
         </form>
       </div>
     </div>
